@@ -9,8 +9,8 @@ try {
         $end_date = $_POST['end_date'];
         $status = 0;
 
-        $stmt = $conn->prepare("INSERT INTO eventplan (title, description, status, start_date, end_date) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssiss", $title, $description, $status, $start_date, $end_date);
+        $stmt = $pdo->prepare("INSERT INTO eventplan (title, description, status, start_date, end_date) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$title, $description, $status, $start_date, $end_date]);
 
         if ($stmt->execute()) {
             header("Location: ../index.php");

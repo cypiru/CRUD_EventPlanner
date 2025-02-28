@@ -7,9 +7,9 @@
 
       $id = $_GET['id'];
 
-      $stmt = $conn->prepare("DELETE FROM eventplan WHERE id = ? "); 
+      $stmt = $pdo->prepare("DELETE FROM eventplan WHERE id = ? "); 
       
-      $stmt->bind_param("i",$id);
+      $stmt->bindValue(1, $id, PDO::PARAM_INT);
 
       if($stmt->execute())
       {

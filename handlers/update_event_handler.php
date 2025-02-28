@@ -10,8 +10,14 @@ try {
         $start_date = $_POST['start_date'];
         $end_date = $_POST['end_date'];
 
-        $stmt = $conn->prepare("UPDATE eventplan SET title = ?, description = ?, status = ?, start_date = ?, end_date = ? WHERE id = ?");
-        $stmt->bind_param("ssissi", $title, $description, $status, $start_date, $end_date, $id);
+$stmt = $pdo->prepare("UPDATE eventplan SET title = ?, description = ?, status = ?, start_date = ?, end_date = ? WHERE id = ?");
+$stmt->bindValue(1, $title);
+$stmt->bindValue(2, $description);
+$stmt->bindValue(3, $status);
+$stmt->bindValue(4, $start_date);
+$stmt->bindValue(5, $end_date);
+$stmt->bindValue(6, $id, PDO::PARAM_INT);
+
 
         if ($stmt->execute()) {
             header("Location: ../index.php");
